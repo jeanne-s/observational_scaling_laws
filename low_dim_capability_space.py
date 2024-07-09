@@ -50,13 +50,14 @@ def apply_pca(leaderboard: pd.DataFrame,
 
 
 def pca_imputation(leaderboard, 
-                        benchmarks=BENCHMARKS, 
-                        test_df=None, 
-                        n_components=1, 
-                        max_iter=1000, 
-                        tol=1e-4, 
-                        boundary=[0.0, 1.0], 
-                        verbose=True):
+                    benchmarks=BENCHMARKS, 
+                    test_df=None, 
+                    n_components=1, 
+                    max_iter=1000, 
+                    tol=1e-4, 
+                    boundary=[0.0, 1.0], 
+                    verbose=True
+):
     """
     Impute missing values in both training and test DataFrames using PCA, 
     with PCA being fitted on the training data only and both DataFrames being refined iteratively until convergence.
@@ -69,7 +70,7 @@ def pca_imputation(leaderboard,
         tol: Tolerance for stopping criteria.
         boundary: the boundary for the imputed values, if None, no boundary is applied.
     """
-
+    
     train_df = leaderboard[benchmarks]
 
     if boundary is not None:
