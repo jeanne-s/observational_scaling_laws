@@ -30,6 +30,7 @@ def apply_pca(leaderboard: pd.DataFrame,
         scaled_data = scaler.fit_transform(leaderboard_for_pca)
     else:
         scaled_data = leaderboard_for_pca
+        scaler = None
 
 
     pca = PCA(n_components=n_components)
@@ -46,7 +47,7 @@ def apply_pca(leaderboard: pd.DataFrame,
         index=[f'PC-{i}' for i in range(1, n_components+1)]
     )
 
-    return principal_df, explained_variance, pca_components
+    return principal_df, explained_variance, pca_components, pca, scaler
 
 
 def pca_imputation(leaderboard, 
@@ -71,7 +72,11 @@ def pca_imputation(leaderboard,
         boundary: the boundary for the imputed values, if None, no boundary is applied.
     """
     
-    train_df = leaderboard[benchmarks]
+    if 'set' not in leaderboard:
+        train_df = leaderboard[benchmarks]
+    else:
+        train_df = leaderboard[leaderboard['set'] == 'train'][benchmarks]
+        test_df = leaderboard[leaderboard['set'] == 'test'][benchmarks]
 
     if boundary is not None:
         assert (isinstance(boundary, list) or isinstance(boundary, tuple)) and len(boundary) == 2
