@@ -12,4 +12,14 @@ Their key finding is that performance can be generalized across model families t
 
 ```1_low-dim_capability_space.ipynb``` shows my replication of results presented in Part 3 of the paper.
 
+<p align="center">
+  <img src="assets/pca_explained_variance.png" alt="Image 1" width="400"/>
+  <img src="assets/pca_components.png" alt="Image 2" width="500"/>
+</p>
+Just a small number of capability dimensions explain most of the variability on standard LM benchmarks.
+<br><br><br>
 
+<p align="center">
+  <img src="assets/pc1.png" alt="Image 1" width="900"/>
+</p>
+PC1 linearly correlates with log-compute within each model family.
